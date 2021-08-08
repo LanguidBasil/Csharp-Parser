@@ -1,6 +1,5 @@
-﻿using System;
-using System.Windows.Forms;
-using WMPLib;
+﻿using System.Windows.Forms;
+using ATL;
 
 namespace Csharp_Parser
 {
@@ -9,21 +8,6 @@ namespace Csharp_Parser
 		public Form1()
 		{
 			InitializeComponent();
-		}
-
-		private void OpenFileButton_Click(object sender, EventArgs e)
-		{
-			openFileDialog.ShowDialog(Owner);
-
-			WindowsMediaPlayer player = new WindowsMediaPlayer { URL = openFileDialog.FileName };
-
-			openFileLabel.Text = player.currentMedia.name;
-			player.controls.play();
-		}
-
-		private void label1_Click(object sender, EventArgs e)
-		{
-
 		}
 	}
 }

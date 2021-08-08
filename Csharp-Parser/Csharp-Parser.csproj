@@ -90,5 +90,11 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Tools\atldotnet-master\ATL\ATL.csproj">
+      <Project>{b4e8f6fb-bd53-4dbb-8516-7cb317ac88c4}</Project>
+      <Name>ATL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
