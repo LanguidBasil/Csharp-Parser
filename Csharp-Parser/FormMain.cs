@@ -1,5 +1,4 @@
 ﻿using System.Windows.Forms;
-using TagLib;
 
 namespace Csharp_Parser
 {
