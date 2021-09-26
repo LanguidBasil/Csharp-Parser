@@ -155,11 +155,5 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="C:\Tools\taglib-sharp-TaglibSharp-2.2.0.0\src\TaglibSharp\TaglibSharp.csproj">
-      <Project>{d6dd29af-98f2-4973-a1c3-9dede0568464}</Project>
-      <Name>TaglibSharp</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
