@@ -6,8 +6,6 @@ namespace Csharp_Parser
 {
 	public partial class FormMain : Form
 	{
-		private string[] _labelsToParse = { "Directed by", "Release date" };
-
 		public FormMain()
 		{
 			InitializeComponent();
@@ -15,24 +13,24 @@ namespace Csharp_Parser
 
         private async void DataButton_Click(object sender, System.EventArgs e)
 		{
-			string url = "https://en.wikipedia.org/wiki/Reservoir_Dogs";
+			string url = "https://www.imdb.com/movies-coming-soon/";
+			string datePrefix = "2021-10/";
 
 			var config = Configuration.Default.WithDefaultLoader();
 			using (var context = BrowsingContext.New(config))
 			{
-				using (var doc = await context.OpenAsync(url))
+				using (var doc = await context.OpenAsync(url + datePrefix))
 				{
-					PrintToTextBox(doc.Title + '\n', DataTextBox);
+					PrintToTextBox(doc.Title + "\r\n", DataTextBox);
 
-					var firstHeading = doc.QuerySelector("h1");
-					PrintToTextBox(firstHeading.TextContent + '\n', DataTextBox);
+					var filmList = doc.GetElementsByClassName("list detail")[0];
+					var films = filmList.GetElementsByClassName("list_item");
 
-                    var infobox = doc.Body.GetElementsByClassName("infobox vevent")[0];
-                    var labels = infobox.GetElementsByClassName("infobox-label");
-					var datas = infobox.GetElementsByClassName("infobox-data");
-                    for (int i = 0; i < labels.Length; i++)
-						if (_labelsToParse.Contains(labels[i].TextContent)) 
-							PrintToTextBox(datas[i].TextContent + '\n', DataTextBox);
+                    foreach (var film in films)
+                    {
+						PrintToTextBox(film.QuerySelector("h4").TextContent, DataTextBox);
+
+                    }
                 }
 			}
 		}

@@ -70,7 +70,7 @@ namespace Csharp_Parser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(500, 251);
+            this.ClientSize = new System.Drawing.Size(306, 251);
             this.Controls.Add(this.DataButton);
             this.Controls.Add(this.DataLabel);
             this.Controls.Add(this.DataTextBox);
