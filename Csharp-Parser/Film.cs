@@ -2,9 +2,9 @@
 {
     public struct Film
     {
-        public string Name;
-        public string Director;
-        public string Genre;
-        public string Year;
+        public string Name { get; set; }
+        public string Director { get; set; }
+        public string Genre { get; set; }
+        public string Year { get; set; }
     }
 }

@@ -1,6 +1,10 @@
 ﻿using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
+using System.Text.Json;
+using System.Text;
+
 using AngleSharp;
 
 namespace Csharp_Parser
@@ -58,7 +62,15 @@ namespace Csharp_Parser
 
 		private void SaveButton_Click(object sender, System.EventArgs e)
 		{
-
+			if (SaveDialog.ShowDialog() == DialogResult.OK)
+			{
+				var options = new JsonSerializerOptions()
+				{
+					WriteIndented = true
+				};
+				string json = JsonSerializer.Serialize(_films, options);
+				File.WriteAllText(SaveDialog.FileName, json, Encoding.Unicode);
+			}
 		}
 
 		private void PrintToTextBox(in string text, in TextBox textBox)

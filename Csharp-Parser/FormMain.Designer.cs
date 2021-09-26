@@ -33,6 +33,7 @@ namespace Csharp_Parser
             this.DataLabel = new System.Windows.Forms.Label();
             this.GetButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
+            this.SaveDialog = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
             // DataTextBox
@@ -78,6 +79,10 @@ namespace Csharp_Parser
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
+            // SaveDialog
+            // 
+            this.SaveDialog.Filter = "Json files|*.json|All files|*.*";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -100,6 +105,7 @@ namespace Csharp_Parser
 		private System.Windows.Forms.Label DataLabel;
 		private System.Windows.Forms.Button GetButton;
         private System.Windows.Forms.Button SaveButton;
+        private System.Windows.Forms.SaveFileDialog SaveDialog;
     }
 }
 
