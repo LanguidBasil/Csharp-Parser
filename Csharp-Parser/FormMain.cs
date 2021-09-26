@@ -1,10 +1,13 @@
 ﻿using System.Windows.Forms;
+using System.Linq;
 using AngleSharp;
 
 namespace Csharp_Parser
 {
 	public partial class FormMain : Form
 	{
+		private string[] _labelsToParse = { "Directed by", "Release date" };
+
 		public FormMain()
 		{
 			InitializeComponent();
@@ -24,10 +27,12 @@ namespace Csharp_Parser
 					var firstHeading = doc.QuerySelector("h1");
 					PrintToTextBox(firstHeading.TextContent + '\n', DataTextBox);
 
-					//var infoboxVevent = doc.Body.GetElementsByClassName("infobox vevent")[0];
-     //               var tds = infoboxVevent.QuerySelectorAll("td");
-     //               foreach (var td in tds)
-     //                   PrintToTextBox(td.TextContent + '\n', DataTextBox);
+                    var infobox = doc.Body.GetElementsByClassName("infobox vevent")[0];
+                    var labels = infobox.GetElementsByClassName("infobox-label");
+					var datas = infobox.GetElementsByClassName("infobox-data");
+                    for (int i = 0; i < labels.Length; i++)
+						if (_labelsToParse.Contains(labels[i].TextContent)) 
+							PrintToTextBox(datas[i].TextContent + '\n', DataTextBox);
                 }
 			}
 		}
