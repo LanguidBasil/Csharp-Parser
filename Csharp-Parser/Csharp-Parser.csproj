@@ -74,6 +74,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Film.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -1,18 +1,24 @@
 ﻿using System.Windows.Forms;
+using System.Collections.Generic;
 using System.Linq;
 using AngleSharp;
+using AngleSharp.Dom;
 
 namespace Csharp_Parser
 {
 	public partial class FormMain : Form
 	{
+		private List<Film> _films;
+
 		public FormMain()
 		{
+			_films = new List<Film>();
 			InitializeComponent();
 		}
 
         private async void DataButton_Click(object sender, System.EventArgs e)
 		{
+			_films.Clear();
 			string url = "https://www.imdb.com/movies-coming-soon/";
 			string datePrefix = "2021-10/";
 
@@ -21,16 +27,32 @@ namespace Csharp_Parser
 			{
 				using (var doc = await context.OpenAsync(url + datePrefix))
 				{
-					PrintToTextBox(doc.Title + "\r\n", DataTextBox);
+					PrintToTextBox(doc.Title + "\r\n\r\n", DataTextBox);
 
 					var filmList = doc.GetElementsByClassName("list detail")[0];
 					var films = filmList.GetElementsByClassName("list_item");
 
-                    foreach (var film in films)
+                    for (int i = 0; i < films.Length; i++)
                     {
-						PrintToTextBox(film.QuerySelector("h4").TextContent, DataTextBox);
+						string name = films[i].QuerySelector("h4").TextContent.Trim();
 
-                    }
+						var genres = films[i].GetElementsByClassName("cert-runtime-genre")[0].QuerySelectorAll("span")
+											.Where(element => element.TextContent != "|");
+						string genre = "";
+                        foreach (var g in genres)
+							genre += g.TextContent + ' ';
+						genre.Trim();
+
+						_films.Add(new Film()
+						{
+							Name = name.Remove(name.Length - 7, 7),
+							Director = films[i].GetElementsByClassName("txt-block")[0].QuerySelector("a").TextContent.Trim(),
+							Genre = genre,
+							Year = name.Substring(name.Length - 5, 4)
+						});
+
+						PrintToTextBox(_films[i].Name + ", " + _films[i].Director + ", " + _films[i].Genre + ", " + _films[i].Year + "\r\n\r\n", DataTextBox);
+					}
                 }
 			}
 		}
