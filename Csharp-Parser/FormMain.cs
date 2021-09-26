@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using System.Text.Json;
-using System.Text;
+using System.Text.Encodings.Web;
 
 using AngleSharp;
 
@@ -66,10 +66,11 @@ namespace Csharp_Parser
 			{
 				var options = new JsonSerializerOptions()
 				{
-					WriteIndented = true
+					WriteIndented = true,
+					Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping
 				};
 				string json = JsonSerializer.Serialize(_films, options);
-				File.WriteAllText(SaveDialog.FileName, json, Encoding.Unicode);
+				File.WriteAllText(SaveDialog.FileName, json);
 			}
 		}
 
