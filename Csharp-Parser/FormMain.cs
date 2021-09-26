@@ -34,8 +34,14 @@ namespace Csharp_Parser
 
 					var films = doc.GetElementsByClassName("list detail")[0].GetElementsByClassName("list_item");
 
-                    for (int i = 0; i < films.Length; i++)
+                    for (int i = 0; i <= AmountComboBox.SelectedIndex; i++)
                     {
+						if (i == films.Length)
+                        {
+							PrintToTextBox("Reached the end of page", DataTextBox);
+							break;
+                        }
+
 						string name = films[i].QuerySelector("h4").TextContent.Trim();
 
 						var genres = films[i].GetElementsByClassName("cert-runtime-genre")[0].QuerySelectorAll("span")
