@@ -31,7 +31,8 @@ namespace Csharp_Parser
 		{
             this.DataTextBox = new System.Windows.Forms.TextBox();
             this.DataLabel = new System.Windows.Forms.Label();
-            this.DataButton = new System.Windows.Forms.Button();
+            this.GetButton = new System.Windows.Forms.Button();
+            this.SaveButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // DataTextBox
@@ -55,23 +56,35 @@ namespace Csharp_Parser
             this.DataLabel.TabIndex = 1;
             this.DataLabel.Text = "Data";
             // 
-            // DataButton
+            // GetButton
             // 
-            this.DataButton.Font = new System.Drawing.Font("Consolas", 10F);
-            this.DataButton.Location = new System.Drawing.Point(110, 209);
-            this.DataButton.Name = "DataButton";
-            this.DataButton.Size = new System.Drawing.Size(79, 30);
-            this.DataButton.TabIndex = 3;
-            this.DataButton.Text = "Get";
-            this.DataButton.UseVisualStyleBackColor = true;
-            this.DataButton.Click += new System.EventHandler(this.DataButton_Click);
+            this.GetButton.Font = new System.Drawing.Font("Consolas", 10F);
+            this.GetButton.Location = new System.Drawing.Point(63, 209);
+            this.GetButton.Name = "GetButton";
+            this.GetButton.Size = new System.Drawing.Size(79, 30);
+            this.GetButton.TabIndex = 3;
+            this.GetButton.Text = "Get";
+            this.GetButton.UseVisualStyleBackColor = true;
+            this.GetButton.Click += new System.EventHandler(this.DataButton_Click);
+            // 
+            // SaveButton
+            // 
+            this.SaveButton.Font = new System.Drawing.Font("Consolas", 10F);
+            this.SaveButton.Location = new System.Drawing.Point(168, 209);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(79, 30);
+            this.SaveButton.TabIndex = 4;
+            this.SaveButton.Text = "Save";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(306, 251);
-            this.Controls.Add(this.DataButton);
+            this.Controls.Add(this.SaveButton);
+            this.Controls.Add(this.GetButton);
             this.Controls.Add(this.DataLabel);
             this.Controls.Add(this.DataTextBox);
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -85,7 +98,8 @@ namespace Csharp_Parser
 		#endregion
 		private System.Windows.Forms.TextBox DataTextBox;
 		private System.Windows.Forms.Label DataLabel;
-		private System.Windows.Forms.Button DataButton;
+		private System.Windows.Forms.Button GetButton;
+        private System.Windows.Forms.Button SaveButton;
     }
 }
 

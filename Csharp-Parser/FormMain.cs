@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using AngleSharp;
-using AngleSharp.Dom;
 
 namespace Csharp_Parser
 {
@@ -29,8 +28,7 @@ namespace Csharp_Parser
 				{
 					PrintToTextBox(doc.Title + "\r\n\r\n", DataTextBox);
 
-					var filmList = doc.GetElementsByClassName("list detail")[0];
-					var films = filmList.GetElementsByClassName("list_item");
+					var films = doc.GetElementsByClassName("list detail")[0].GetElementsByClassName("list_item");
 
                     for (int i = 0; i < films.Length; i++)
                     {
@@ -41,7 +39,8 @@ namespace Csharp_Parser
 						string genre = "";
                         foreach (var g in genres)
 							genre += g.TextContent + ' ';
-						genre.Trim();
+						// filtering out age limit
+						genre = new string( genre.Where(c => c != '+' && (c < '0' || c > '9')).ToArray()).Trim();
 
 						_films.Add(new Film()
 						{
@@ -55,6 +54,11 @@ namespace Csharp_Parser
 					}
                 }
 			}
+		}
+
+		private void SaveButton_Click(object sender, System.EventArgs e)
+		{
+
 		}
 
 		private void PrintToTextBox(in string text, in TextBox textBox)
