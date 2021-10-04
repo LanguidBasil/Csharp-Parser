@@ -23,12 +23,10 @@ namespace Csharp_Parser
 		{
 			_films.Clear();
 			string url = "https://www.imdb.com/movies-coming-soon/";
-			string datePrefix = "2021-10/";
 
 			var config = Configuration.Default.WithDefaultLoader();
 			using (var context = BrowsingContext.New(config))
-			{
-				using (var doc = await context.OpenAsync(url + datePrefix))
+				using (var doc = await context.OpenAsync(url))
 				{
 					PrintToTextBox(doc.Title + "\r\n\r\n", DataTextBox);
 
@@ -63,7 +61,6 @@ namespace Csharp_Parser
 						PrintToTextBox(_films[i].Name + ", " + _films[i].Director + ", " + _films[i].Genre + ", " + _films[i].Year + "\r\n\r\n", DataTextBox);
 					}
                 }
-			}
 		}
 
 		private void SaveButton_Click(object sender, System.EventArgs e)
